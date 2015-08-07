@@ -49,12 +49,9 @@
 
 				var title=item.CaseLocationDistrict + "\n" + item.CaseLocationDescription + "\n" + item.CaseDescription;
 
-				console.log(item);
-				console.log(item.Wgs84X[0]);
-				console.log(item.Wgs84Y[0]);
-				console.log(title);
-
-				addMarker(item.Wgs84X[0], item.Wgs84Y[0], title);
+				if(item.CaseComplete == false){
+					addMarker(item.Wgs84X[0], item.Wgs84Y[0], title);
+				}
 			}
 		})
 	})
