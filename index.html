@@ -4,8 +4,8 @@
 	<title>蘇迪勒颱風災情資料</title>
     <style>
       #map-canvas {
-			width: 500px;
-			height: 400px;
+			width: 1024px;
+			height: 768px;
 			background-color: #CCC;
       }
     </style>
@@ -22,8 +22,8 @@
 	function initialize() {
 		var mapCanvas = document.getElementById('map-canvas');
 		var mapOptions = {
-			center: new google.maps.LatLng(23.69781, 120.96051499999999),
-			zoom: 8,
+			center: new google.maps.LatLng(25.0172264, 121.506378),
+			zoom: 12,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
 		map = new google.maps.Map(mapCanvas, mapOptions);
