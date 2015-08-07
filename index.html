@@ -49,11 +49,9 @@
 
 				var title=item.CaseLocationDistrict + "\n" + item.CaseLocationDescription + "\n" + item.CaseDescription;
 
-				if(item.CaseComplete == false){
-					addMarker(item.Wgs84X[0], item.Wgs84Y[0], title);
-				}
+				addMarker(item.Wgs84X[0], item.Wgs84Y[0], title);
 			}
-		})
+		});
 	})
 </script>
 </html>
