@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AP試算</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	P:<input name="p" placeholder=""><br/>
+	Portal Level:<input name="portal_level" placeholder=""><br/>
+	剩餘時間:<input name="time_left" placeholder=""><br/>
+	正確個數:<input name="g_current" placeholder="正確個數"><br/>
+	<input type="button" id="btnCalc" value="計算">
+	<script type="text/javascript">
+		$(function(){
+			$("#btnCalc").click(function(e){
+				e.preventDefault();
+
+				var _p = parseInt($("[name=p]").val());
+				var _portal_level = parseInt($("[name=portal_level]").val());
+				var _time_left = parseInt($("[name=time_left]").val());
+				var _g_current = parseInt($("[name=g_current]").val());
+				var _time_limit = 0;
+
+				switch(_portal_level)
+				{
+					case 1:
+					case 2:
+					case 3:
+						_time_limit = 20;
+						break;
+					case 4:
+						_time_limit = 19;
+						break;
+					case 5:
+						_time_limit = 18;
+						break;
+					case 6:
+						_time_limit = 17;
+						break;
+					case 7:
+						_time_limit = 16;
+						break;
+					case 8:
+						_time_limit = 15;
+						break;
+				}
+
+				alert(ap_gain(_p, _time_left, _time_limit, _g_current));
+			});
+		});
+
+		var bonus_speed = function(p, time_left, time_limit){
+			result = Math.floor(p * (100 * time_left / time_limit));
+			console.log("bonus_speed:" + result);
+			return result;
+		};
+
+		var ap_base = function(g_current){
+			result = 50 * g_current;
+			console.log("ap_base:" + result);
+			return result;
+		};
+
+		var ap_bound = function(p, g_current){
+			result = Math.floor(20 * p * Math.pow(2, 0.5 * g_current));
+			console.log("ap_bound:" + result);
+			return result;
+		};
+
+		var ap_gain = function(p, time_left, time_limit, g_current){
+			result = bonus_speed(p, time_left, time_limit) + ap_base(g_current) + ap_bound(p, g_current);
+			console.log("ap_gain:" + result);
+			return result;
+		}
+	</script>
+</body>
+</html>
