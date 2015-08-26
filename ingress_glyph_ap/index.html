@@ -9,12 +9,22 @@
 	剩餘時間:<input name="time_left" placeholder=""><br/>
 	正確個數:<input name="g_current" placeholder="正確個數"><br/>
 	<input type="button" id="btnCalc" value="計算">
+	<table id="tblResult">
+		<thead>
+			<tr>
+				<th style="width:100px;">Portal Level</th>
+				<th style="width:100px;">剩餘時間</th>
+				<th style="width:100px;">正確個數</th>
+				<th style="width:100px;">AP</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
 	<script type="text/javascript">
 		$(function(){
 			$("#btnCalc").click(function(e){
 				e.preventDefault();
 
-				var _p = parseInt($("[name=p]").val());
 				var _portal_level = parseInt($("[name=portal_level]").val());
 				var _time_left = parseInt($("[name=time_left]").val());
 				var _g_current = parseInt($("[name=g_current]").val());
@@ -66,9 +76,17 @@
 						break;
 				}
 
-				alert(ap_gain(parseFloat(_g_current / _g_total), _time_left, _time_limit, _g_current));
+				var result = ap_gain(parseFloat(_g_current / _g_total), _time_left, _time_limit, _g_current);
+
+				append_result(_portal_level, _time_left, _g_current, result);
+
+				alert("本次AP:" + result);
 			});
 		});
+
+		var append_result = function(level, time_left, g_current, ap){
+			$("#tblResult > tbody").append("<tr><td>" + level + "</td><td>" + time_left + "</td><td>" + g_current + "</td><td>" + ap + "</td></tr>");
+		};
 
 		var bonus_speed = function(p, time_left, time_limit){
 			result = Math.floor(p * (100 * time_left / time_limit));
