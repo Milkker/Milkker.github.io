@@ -1,0 +1,3 @@
+[submodule "ingress-homogeneous-field-demo"]
+	path = ingress-homogeneous-field-demo
+	url = https://milkker@github.com/Milkker/ingress-homogeneous-field-demo.git
