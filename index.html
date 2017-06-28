@@ -1,57 +1,33 @@
 <!doctype html>
 <html>
+
 <head>
-	<title>蘇迪勒颱風災情資料</title>
-    <style>
-      #map-canvas {
-			width: 1024px;
-			height: 768px;
-			background-color: #CCC;
-      }
-    </style>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <title>Testing Google AdSense</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9050880489670144",
+        enable_page_level_ads: true
+    });
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div id="map-canvas"></div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Testing Google AdSense</h1>
+            <p>其他網站作品</p>
+            <ul class="list-unstyled">
+                <li><a href='.\ingress-homogeneous-field-demo\index.html'>Ingress Homogeneous Field Demo</a></li>
+                <!-- <li><a href='.\ingress_glyph_ap\index.html'>Ingress glyph ap calculator</a></li> -->
+            </ul>
+        </div>
+    </div>
 </body>
-<script type="text/javascript">
-	var map;
-	var result;
-
-	function initialize() {
-		var mapCanvas = document.getElementById('map-canvas');
-		var mapOptions = {
-			center: new google.maps.LatLng(25.0172264, 121.506378),
-			zoom: 12,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(mapCanvas, mapOptions);
-	}
-
-	function addMarker(Wgs84Y, Wgs84X, title){
-		var myLatlng = new google.maps.LatLng(Wgs84X, Wgs84Y);
-		var marker = new google.maps.Marker({
-			position: myLatlng, //Marker的座標
-			map: map, //map物件，以這篇文章的例子，就是上面那個map物件
-			title: title //當滑鼠移至Marker上時，要顯示的Title文字
-		});
-	}
-
-	$(function(){
-		initialize();
-
-		$.get("https://tcgbusfs.blob.core.windows.net/blobfs/GetDisasterSummary.json", function(data){
-			result = data["DataSet"]["diffgr:diffgram"][0]["NewDataSet"][0]["CASE_SUMMARY"];
-
-			for(var index in result){
-				var item = result[index];
-
-				var title=item.CaseLocationDistrict + "\n" + item.CaseLocationDescription + "\n" + item.CaseDescription;
-
-				addMarker(item.Wgs84X[0], item.Wgs84Y[0], title);
-			}
-		});
-	})
-</script>
-</html>
